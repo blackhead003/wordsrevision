@@ -153,19 +153,22 @@ def main():
     opt, opt2 = option()
     sentences = []  # Empty list to store sentences in it
     for data in csvFile:  # Loop to get all the Words in the list
-        if opt2 == 1:
-            try:
-                if timeaddition(data[2], 2) or timeaddition(data[2], 3) or timeaddition(data[2], 5) or timeaddition(data[2], 7) or timeaddition(data[2], 15) or timeaddition(data[2], 10) or timeaddition(data[2], 20) or timeaddition(data[2], 40) or timeaddition(data[2], 50) or timeaddition(data[2], 30) or timeaddition(data[2], 60) or timeaddition(data[2], 90) or timeaddition(data[2], 120) or timeaddition(data[2], 150):  # Checking which words to revise today
-                    words.append(data)  # Add the words to the list which are required to be studied today
-                    row_count += 1  # Augmented statement to keep adding the number of rows
-            except ValueError:
-                print "Error with entry : %s" % str(data[2])
-        elif opt2 == 2:  # To revise all the words and not only for the day
-            try:
-                words.append(data)
-                row_count += 1
-            except ValueError:
-                print "Error with entry : %s" % str(data[2])
+        if "Date of Learning" in data:
+            pass
+        else:
+            if opt2 == 1:
+                try:
+                    if timeaddition(data[2], 2) or timeaddition(data[2], 3) or timeaddition(data[2], 5) or timeaddition(data[2], 7) or timeaddition(data[2], 15) or timeaddition(data[2], 10) or timeaddition(data[2], 20) or timeaddition(data[2], 40) or timeaddition(data[2], 50) or timeaddition(data[2], 30) or timeaddition(data[2], 60) or timeaddition(data[2], 90) or timeaddition(data[2], 120) or timeaddition(data[2], 150):  # Checking which words to revise today
+                        words.append(data)  # Add the words to the list which are required to be studied today
+                        row_count += 1  # Augmented statement to keep adding the number of rows
+                except ValueError:
+                    print "Error with entry : %s" % str(data[2])
+            elif opt2 == 2:  # To revise all the words and not only for the day
+                try:
+                    words.append(data)
+                    row_count += 1
+                except ValueError:
+                    print "Error with entry : %s" % str(data[2])
     randomList = random.sample(range(row_count), row_count)  # sample will get unique elements for the list
     if words != []:  # If the words list is not empty then go to the loop
         tries = 0  # A variable to count the number of tries
