@@ -147,7 +147,7 @@ def main():
     :return: None
     """
     openFile = open(sys.argv[1], 'rb')  # Take the file in command line argument
-    csvFile = csv.reader(openFile, delimiter='-')  # Read the file as a CSV
+    csvFile = csv.reader(openFile, delimiter='\t')  # Read the file as a CSV
     row_count = 0  # A variable to count the number of rows in the CSV
     words = []  # Empty list to get the words in it
     opt, opt2 = option()
@@ -196,11 +196,8 @@ def main():
                                 continue
                         break
                     else:
-                        if word != '':
-                            print "The current word is "+str(round(float(compare_strings(str(word), str(words[num][0])))*100))+"% similar to the word entered. Try again."  # Asking user to try again if he hasn't guessed the right word
-                            tries += 1  # Augmented statement to keep adding the number of tries
-                        else:
-                            print "Enter a word."
+                        print "The current word is "+str(round(float(compare_strings(str(word), str(words[num][0])))*100))+"% similar to the word entered. Try again."  # Asking user to try again if he hasn't guessed the right word
+                        tries += 1  # Augmented statement to keep adding the number of tries
                     if tries >= 5:  # If the tries are 5 or more than 5 then give a hint
                         print "The first two letters of the word are %s" % words[num][0][:2]  # Printing the first letter of the word as a hint
                 counter += 1
